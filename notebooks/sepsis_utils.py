@@ -54,24 +54,37 @@ def logit(p, eps=1e-6):
     return np.log(p / (1 - p))
 
 
-def expected_calibration_error(y, p, n_bins=10):
-    """ECE: gap between predicted risk and observed frequency, averaged over 10 equal-width
-    bins of predicted risk and weighted by the share of hours in each bin. 0 = perfect."""
+def calibration_bins(p, n_bins=10, strategy="quantile"):
+    """Bin number (0 to n_bins - 1) of each predicted risk.
+
+    - "quantile" (default): equal-count bins, each holds about the same number of hours.
+      Needed here because almost all predicted risks are small: with equal-width bins,
+      nearly every hour falls in the first bin (0-10 %) and the other bins are almost empty.
+    - "uniform": equal-width bins of predicted risk (0-10 %, 10-20 %, ...).
+    """
+    p = np.asarray(p, dtype=float)
+    if strategy == "uniform":
+        return np.minimum((p * n_bins).astype(int), n_bins - 1)
+    inner_edges = np.quantile(p, np.linspace(0, 1, n_bins + 1))[1:-1]
+    return np.searchsorted(inner_edges, p, side="right")
+
+
+def expected_calibration_error(y, p, n_bins=10, strategy="quantile"):
+    """ECE: gap between predicted risk and observed frequency in each bin, averaged over the
+    bins and weighted by the share of hours in each bin. 0 = perfectly calibrated."""
     y, p = np.asarray(y, dtype=float), np.asarray(p, dtype=float)
-    bins = np.minimum((p * n_bins).astype(int), n_bins - 1)
+    bins = calibration_bins(p, n_bins, strategy)
     ece = 0.0
-    for b in range(n_bins):
+    for b in np.unique(bins):
         in_bin = bins == b
-        if in_bin.any():
-            ece += in_bin.mean() * abs(y[in_bin].mean() - p[in_bin].mean())
+        ece += in_bin.mean() * abs(y[in_bin].mean() - p[in_bin].mean())
     return ece
 
 
-def reliability_table(y, p, n_bins=10):
+def reliability_table(y, p, n_bins=10, strategy="quantile"):
     """Per bin of predicted risk: number of hours, mean predicted risk, observed share of sepsis."""
     y, p = np.asarray(y, dtype=float), np.asarray(p, dtype=float)
-    bins = np.minimum((p * n_bins).astype(int), n_bins - 1)
-    df = pd.DataFrame({"bin": bins, "y": y, "p": p})
+    df = pd.DataFrame({"bin": calibration_bins(p, n_bins, strategy), "y": y, "p": p})
     return (df.groupby("bin")
               .agg(n_hours=("y", "size"), mean_predicted=("p", "mean"), observed=("y", "mean"))
               .reset_index())
