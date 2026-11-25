@@ -1,0 +1,25 @@
+direction,new,old,metric,old value,new value,new - old,ci_low,ci_high,significant (CI excludes 0)
+A → B (on B-test),logistic + local Platt,logistic + Platt,Brier,0.013500924831936614,0.013547209650685017,4.628481874840301e-05,-2.083252032060289e-05,9.891825542303573e-05,False
+A → B (on B-test),logistic + local Platt,logistic + Platt,ECE,0.001693323096479876,0.002434470748496244,0.0007411476520163679,8.092443626338086e-07,0.0011376588361715124,True
+A → B (on B-test),logistic + local intercept,logistic + Platt,Brier,0.013500924831936614,0.013509921785161555,8.996953224940651e-06,-7.421288189457314e-06,2.3616482138304716e-05,False
+A → B (on B-test),logistic + local intercept,logistic + Platt,ECE,0.001693323096479876,0.0018653830824595825,0.00017205998597970653,-0.000517027267584695,0.0006676317912144503,False
+A → B (on B-test),"logistic, alert 5 %, local threshold","logistic, alert 5 %, source threshold",alert_rate,0.017754195879872238,0.04497248657121682,0.027218290691344585,0.023578181990605237,0.030722609443088432,True
+A → B (on B-test),"logistic, alert 5 %, local threshold","logistic, alert 5 %, source threshold",sensitivity,0.17270194986072424,0.28969359331476324,0.11699164345403901,0.08798756842300251,0.14553772522522523,True
+A → B (on B-test),"logistic, alert 5 %, local threshold","logistic, alert 5 %, source threshold",PPV,0.1374214998152937,0.09100189587283068,-0.046419603942463014,-0.07428829364236185,-0.02593247027977026,True
+A → B (on B-test),"logistic, alert 5 %, local threshold","logistic, alert 5 %, source threshold",false_alarms_per_patient_day,0.36754530369709654,0.9811177207468962,0.6135724170497996,0.527268377529287,0.6962297494868082,True
+A → B (on B-test),"logistic, alert 10 %, local threshold","logistic, alert 10 %, source threshold",alert_rate,0.038643414157446335,0.09458847912061966,0.05594506496317332,0.051390270599957516,0.06077454810003719,True
+A → B (on B-test),"logistic, alert 10 %, local threshold","logistic, alert 10 %, source threshold",sensitivity,0.26880222841225626,0.39415041782729804,0.12534818941504178,0.09875599122313292,0.15538717196379792,True
+A → B (on B-test),"logistic, alert 10 %, local threshold","logistic, alert 10 %, source threshold",PPV,0.09826883910386966,0.05886839550686451,-0.03940044359700515,-0.05269724301261134,-0.028559130630521797,True
+A → B (on B-test),"logistic, alert 10 %, local threshold","logistic, alert 10 %, source threshold",false_alarms_per_patient_day,0.8363032970204171,2.1364849709125013,1.3001816738920842,1.192129470329082,1.4115620060821124,True
+B → A (on A-test),logistic + local Platt,logistic + Platt,Brier,0.02111024821832652,0.020594029759969695,-0.000516218458356827,-0.0009514825420437438,-0.00018758952404604608,True
+B → A (on A-test),logistic + local Platt,logistic + Platt,ECE,0.008943351639909196,0.0025347674104856557,-0.006408584229423539,-0.008671079633343846,-0.0028621269322522433,True
+B → A (on A-test),logistic + local intercept,logistic + Platt,Brier,0.02111024821832652,0.020809355552661456,-0.00030089266566506526,-0.00048718817995970447,-0.00016344835011685295,True
+B → A (on A-test),logistic + local intercept,logistic + Platt,ECE,0.008943351639909196,0.006058628157716031,-0.0028847234821931644,-0.0032619788888870807,-0.0020967190464352215,True
+B → A (on A-test),"logistic, alert 5 %, local threshold","logistic, alert 5 %, source threshold",alert_rate,0.1417655288368037,0.05832606636260406,-0.08343946247419964,-0.08916324166342031,-0.07818318249395471,True
+B → A (on A-test),"logistic, alert 5 %, local threshold","logistic, alert 5 %, source threshold",sensitivity,0.39630931458699475,0.23842999414176919,-0.15787932044522557,-0.18579947733939758,-0.1310017312851475,True
+B → A (on A-test),"logistic, alert 5 %, local threshold","logistic, alert 5 %, source threshold",PPV,0.05987520467318671,0.08755512530923953,0.027679920636052825,0.018862137676579387,0.03744670946451737,True
+B → A (on A-test),"logistic, alert 5 %, local threshold","logistic, alert 5 %, source threshold",false_alarms_per_patient_day,3.1986549307703407,1.2772636875223498,-1.921391243247991,-2.0565332047473874,-1.7953917874773415,True
+B → A (on A-test),"logistic, alert 10 %, local threshold","logistic, alert 10 %, source threshold",alert_rate,0.2506195223247614,0.10771219031725816,-0.14290733200750327,-0.14996855155465028,-0.13639900532155333,True
+B → A (on A-test),"logistic, alert 10 %, local threshold","logistic, alert 10 %, source threshold",sensitivity,0.5521382542472173,0.3380199179847686,-0.2141183362624487,-0.24445963678600086,-0.1837428890550525,True
+B → A (on A-test),"logistic, alert 10 %, local threshold","logistic, alert 10 %, source threshold",PPV,0.0471863422449184,0.06721416506494263,0.02002782282002423,0.014548299975099007,0.025756719294121606,True
+B → A (on A-test),"logistic, alert 10 %, local threshold","logistic, alert 10 %, source threshold",false_alarms_per_patient_day,5.731048890506095,2.411337729066419,-3.319711161439676,-3.4855246892066134,-3.166325829962053,True
