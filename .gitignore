@@ -225,3 +225,4 @@ data/**
 !data/**/
 !data/**/README.md
 !data/processed/patients_splits.csv
+!data/processed/*.xz
